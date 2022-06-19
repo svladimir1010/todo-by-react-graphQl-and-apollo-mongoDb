@@ -11,7 +11,7 @@ const resolvers = {
         },
 
         getTodo: async( root, args ) => {
-            const todo = await Todo.findById( args.id )
+            const todo = await Todo.findById( args?.id )
             return todo
         },
     },

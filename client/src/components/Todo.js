@@ -1,13 +1,14 @@
-import React from 'react'
-import moment from 'moment'
+import React, { useContext } from 'react'
 import { useMutation } from '@apollo/client'
 import { DELETE_TODO } from '../graphql/Mutation'
 import { GET_TODOS } from '../graphql/Query'
+import { TodoContext } from '../TodoContext'
 
 const Todo = ( { id, title, detail, date } ) => {
+    const { _, setSelectedId } = useContext( TodoContext )
     const [ deleteTodo ] = useMutation( DELETE_TODO )
-    const removeTodo = id => {
-        deleteTodo( {
+    const removeTodo = async id => {
+        await deleteTodo( {
             variables: {
                 id: id,
             }, refetchQueries: [
@@ -16,10 +17,10 @@ const Todo = ( { id, title, detail, date } ) => {
         } )
     }
     return (
-        <a href="#" className="list-group-item list-group-item-action">
+        <a href="#" onClick={ () => setSelectedId( id ) } className="list-group-item list-group-item-action">
             <div className="d-flex w-100 justify-content-between">
                 <h4>{ title }</h4>
-                <small>{ moment( date ).format( 'DD.MMM.YYYY' ) }</small>
+                <small>{ date }</small>
             </div>
             <div className="row d-flex ">
                 <p className="col-sm-10">{ detail }</p>

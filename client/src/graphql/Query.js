@@ -10,5 +10,15 @@ export const GET_TODOS = gql`
         }
     }
 `
+export const GET_TODO = gql`
+   query getTodo($id: ID) {
+        getTodo(id:$id) {
+            id
+            title
+            detail
+            date
+        }
+    }
+`
 
 
