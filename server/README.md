@@ -13,6 +13,7 @@ put a link in a file .env
 like this: 
 
 mongodb=mongodb+srv://vladimir:<******>@cluster0.4u82gwi.mongodb.net/?retryWrites=true&w=majority
+
 PORT=5000
 
 get URL mongoDb database and add to index.js
